@@ -1,0 +1,22 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Datasource local storage ignored files
+/../../../../../../:\Users\Kirill\IdeaProjects\analizeParsedProject\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
+.idea/*.xml
+.idea/*.html
+
+.idea
+
+.gradle
+build
+target
+out
+
+/src/main/resources/Calculator-master
+
+*.iml
