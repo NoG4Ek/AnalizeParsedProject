@@ -9,10 +9,15 @@ open class T(n: Int) {
     }
 }
 
+interface I {}
+interface II {}
+class III(n: Int) : T(n), I, II {}
+
 class TT(n: Int) : T(n) {
     override fun t(){
 
     }
+
 }
 
 class g(n: Int) {

@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.spec.grammar.tools.*
 
 fun main() {
-    val files = ProjectParser().parseProject("test.kt")
+    val files = ProjectParser().parseProject("Test.kt")
     val guest = Guest()
 
     files.forEach { f ->
@@ -120,6 +120,7 @@ private fun findClassName(node: KotlinParseTree) =
 
 private fun findDelegation(node: KotlinParseTree): String {
     val del = findChild(node, "delegationSpecifiers")
+    //for
     if (del != null) {
         return findChild(del, "simpleIdentifier")!!.children[0].text!!
     }
@@ -140,10 +141,6 @@ private fun findChild(node: KotlinParseTree, term: Regex): KotlinParseTree? {
     node.children.forEach { child ->
         if (term.matches(child.name)) {
             return child
-        }
-        val o = findChild(child, term)
-        if (o != null) {
-            return o
         }
     }
     return null
