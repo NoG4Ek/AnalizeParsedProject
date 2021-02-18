@@ -1,7 +1,10 @@
 import com.google.gson.Gson
+import org.kohsuke.args4j.Option
 import java.io.File
+import java.nio.file.Paths
 
 class JsonBuilder {
+
     fun createJSON(metrics: VisitorAST.Metrics): String = """
    { "maxDepthInheritance": ${metrics.maxDepthInheritance},
      "averageDepthInheritance": ${metrics.averageDepthInheritance},
@@ -16,12 +19,17 @@ class JsonBuilder {
     fun getMetricsFromJSON(json: String): VisitorAST.Metrics? =
         Gson().fromJson(json, VisitorAST.Metrics::class.java)
 
-    fun createFileJson(json: String, fileName: String) {
-        val file = File("./", "$fileName.txt")
+    fun createFileJson(json: String) {
+        val projectDirAbsolutePath = Paths.get("").toAbsolutePath().toString()
+        val resourcesPath = Paths.get(projectDirAbsolutePath, "./${Args.fileName}.json")
+
+        val exFile = File(resourcesPath.toUri())
+        if (exFile.exists()) exFile.delete()
+        val file = File("./", "${Args.fileName}.txt")
         file.printWriter().use { out ->
             out.print(json)
         }
-        file.renameTo(File("./$fileName.json"))
+        file.renameTo(File("./${Args.fileName}.json"))
     }
 
 }

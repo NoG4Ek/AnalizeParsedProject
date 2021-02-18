@@ -1,12 +1,13 @@
+import org.kohsuke.args4j.Option
 import java.io.File
 import java.nio.file.Paths
 
 class ProjectParser {
     private val ktFiles = mutableListOf<File>()
 
-    fun parseProject(nameProjectFolder: String): List<File> {
+    fun parseProject(): List<File> {
         val projectDirAbsolutePath = Paths.get("").toAbsolutePath().toString()
-        val resourcesPath = Paths.get(projectDirAbsolutePath, "/src/main/resources/$nameProjectFolder")
+        val resourcesPath = Paths.get(projectDirAbsolutePath, "./${Args.nameProjectFolder}")
 
         val dir = File(resourcesPath.toUri())
         dir.walk().forEach { f ->

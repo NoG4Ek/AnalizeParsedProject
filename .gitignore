@@ -1,21 +1,16 @@
-# Default ignored files
 /shelf/
-/workspace.xml
-# Datasource local storage ignored files
-/../../../../../../:\Users\Kirill\IdeaProjects\analizeParsedProject\.idea/dataSources/
-/dataSources.local.xml
-# Editor-based HTTP Client requests
 /httpRequests/
 
+.idea
 .idea/*.xml
 .idea/*.html
-
-.idea
+.idea/artifacts
 
 .gradle
 build
 target
 out
+projects
 
 /src/main/resources/
 

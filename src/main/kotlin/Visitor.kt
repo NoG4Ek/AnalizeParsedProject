@@ -10,7 +10,7 @@ class VisitorAST : Visitor {
                        averageOverrideMethods: Double = 0.0, val averageFieldClass: Double = 0.0)
 
     private var metrics: Metrics = Metrics()
-    public fun getMetrics(): Metrics {
+    fun getMetrics(): Metrics {
         assembleMetrics()
         return metrics
     }
@@ -63,18 +63,20 @@ class VisitorAST : Visitor {
         }
     }
 
-    public fun draw() {
+    fun draw() {
         assembleMetrics()
 
-        println("$classes \n")
-        println("Максимальная глубина наследования: " + metrics.maxDepthInheritance)
-        println("Средняя глубина наследования: " + metrics.averageDepthInheritance)
+        //println("$classes \n")
+        println()
+        println("Max Class Depth Inheritance: ${metrics.maxDepthInheritance}")
+        println("Average Class Depth Inheritance: ${metrics.averageDepthInheritance}")
 
-        println("Количество присваиваний значений переменной: ${metrics.assignments}")
-        println("Количество вызовов методов: ${metrics.branches}")
-        println("Количество пераций сравнения: ${metrics.conditions}")
-        println("Средние количество переопределенных методов: ${metrics.averageOverrideMethods}")
-        println("Среднее число полей в классе: ${metrics.averageFieldClass}")
+        println("ABC metric:")
+        println("\t Assignments: ${metrics.assignments}")
+        println("\t Branches: ${metrics.branches}")
+        println("\t Conditions: ${metrics.conditions}")
+        println("Average Override Class Methods: ${metrics.averageOverrideMethods}")
+        println("Average Field Class: ${metrics.averageFieldClass}")
     }
 
     private fun assembleMetrics() {
