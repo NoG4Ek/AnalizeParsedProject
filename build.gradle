@@ -13,6 +13,7 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation 'com.google.code.gson:gson:2.8.6'
     compile files('IP/kotlin-grammar-tools-0.1.jar')
     compile files('IP/kotlin-grammar-parser-0.1.jar')
 }

@@ -17,6 +17,6 @@ build
 target
 out
 
-/src/main/resources/Calculator-master
+/src/main/resources/
 
 *.iml
