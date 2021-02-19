@@ -1,5 +1,4 @@
 import com.google.gson.Gson
-import org.kohsuke.args4j.Option
 import java.io.File
 import java.nio.file.Paths
 
@@ -8,6 +7,7 @@ class JsonBuilder {
     fun createJSON(metrics: VisitorAST.Metrics): String = """
    { "maxDepthInheritance": ${metrics.maxDepthInheritance},
      "averageDepthInheritance": ${metrics.averageDepthInheritance},
+     "abc": ${metrics.abc},
      "assignments": ${metrics.assignments},
      "branches": ${metrics.branches},
      "conditions": ${metrics.conditions},

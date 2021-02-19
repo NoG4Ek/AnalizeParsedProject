@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.spec.grammar.tools.KotlinParseTree
+import kotlin.math.sqrt
 
 interface Visitor {
     fun accept(node: KotlinParseTree)
@@ -6,6 +7,7 @@ interface Visitor {
 
 class VisitorAST : Visitor {
     data class Metrics(val maxDepthInheritance: Int = 0, val averageDepthInheritance: Double = 0.0,
+                       val abc: Double = 0.0,
                        val assignments: Int = 0, val branches: Int = 0, val conditions: Int = 0, val
                        averageOverrideMethods: Double = 0.0, val averageFieldClass: Double = 0.0)
 
@@ -71,7 +73,7 @@ class VisitorAST : Visitor {
         println("Max Class Depth Inheritance: ${metrics.maxDepthInheritance}")
         println("Average Class Depth Inheritance: ${metrics.averageDepthInheritance}")
 
-        println("ABC metric:")
+        println("ABC metric: ${metrics.abc}")
         println("\t Assignments: ${metrics.assignments}")
         println("\t Branches: ${metrics.branches}")
         println("\t Conditions: ${metrics.conditions}")
@@ -80,10 +82,12 @@ class VisitorAST : Visitor {
     }
 
     private fun assembleMetrics() {
-        metrics = Metrics(maxDeepDel(), averageDeepDel(), assignments, branches, conditions,
+        metrics = Metrics(maxDeepDel(), averageDeepDel(), abc(), assignments, branches, conditions,
             countOverrides.toDouble() / classes.size.toDouble(),
             countProperties.toDouble() / classes.size.toDouble())
     }
+
+    private fun abc(): Double = sqrt(((assignments * assignments) + (branches * branches) + (conditions * conditions)).toDouble())
 
     private fun maxDeepDel(): Int {
         var max = 0
